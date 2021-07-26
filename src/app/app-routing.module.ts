@@ -1,6 +1,6 @@
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { SigninComponent} from './pages/Auth/Login/signin.component'
+import { SigninComponent } from './pages/Auth/Login/signin.component'
 
 
 export const routes: Routes = [
@@ -8,12 +8,12 @@ export const routes: Routes = [
     path: 'pages',
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
-  }, 
+  },
   {
     path: 'login',
     component: SigninComponent
   },
-  
+
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' },
 ];

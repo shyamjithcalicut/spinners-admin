@@ -24,16 +24,16 @@ export class SigninComponent implements OnInit {
     this.returnUrl = '/pages/dashboard';
   };
 
-  login(){
-    this.authService.login(this.model).subscribe(response =>{
+  login() {
+    this.authService.login(this.model).subscribe(response => {
       this.router.navigate([this.returnUrl]);
       this.loggedIn = true;
-    }, error =>{
+    }, error => {
       console.log(error);
     });
   }
 
-  logout(){
+  logout() {
     this.loggedIn = false;
   }
 
