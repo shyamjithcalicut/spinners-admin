@@ -6,11 +6,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SigninComponent } from './pages/Auth/Login/signin.component';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -21,13 +26,16 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 
+
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SigninComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
@@ -39,8 +47,22 @@ import {
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+
+      }
+    }),
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('en');
+  }
+}
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }

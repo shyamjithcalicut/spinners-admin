@@ -27,7 +27,9 @@
     "docs:serve": "compodoc -p src/tsconfig.app.json -d docs -s",
     "prepush": "npm run lint:ci",
     "release:changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
-    "postinstall": "ngcc --properties es2015 es5 browser module main --first-only --create-ivy-entry-points --tsconfig \"./src/tsconfig.app.json\""
+    "postinstall": "ngcc --properties es2015 es5 browser module main --first-only --create-ivy-entry-points --tsconfig \"./src/tsconfig.app.json\"",
+    "i18n:init": "ngx-translate-extract --input ./src --output ./src/assets/i18n/template.json --key-as-default-value --replace --format json",
+    "i18n:extract": "ngx-translate-extract --input ./src --output \"./src/assets/i18n/en.json\" \"./src/assets/i18n/ar.json\"  --clean --format json"
   },
   "dependencies": {
     "@angular/animations": "^10.0.10",
@@ -43,6 +45,8 @@
     "@nebular/eva-icons": "6.0.0",
     "@nebular/security": "6.0.0",
     "@nebular/theme": "6.0.0",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "bootstrap": "4.3.1",
     "classlist.js": "1.1.20150312",
     "core-js": "2.5.1",
@@ -50,7 +54,7 @@
     "intl": "1.2.5",
     "ionicons": "2.0.1",
     "nebular-icons": "1.1.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "normalize.css": "6.0.0",
     "pace-js": "1.0.2",
     "roboto-fontface": "0.8.0",
@@ -68,7 +72,8 @@
     "@angular/cli": "^10.0.6",
     "@angular/compiler-cli": "^10.0.10",
     "@angular/language-service": "10.0.10",
-    "@compodoc/compodoc": "1.0.1",
+    "@biesbjerg/ngx-translate-extract": "^7.0.4",
+    "@compodoc/compodoc": "^1.1.14",
     "@types/jasmine": "2.5.54",
     "@types/jasminewd2": "2.0.3",
     "@types/node": "^12.11.1",

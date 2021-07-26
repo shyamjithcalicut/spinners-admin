@@ -2,6 +2,7 @@ import { Component, OnDestroy, Input } from '@angular/core';
 import { NbLayoutDirectionService, NbLayoutDirection } from '@nebular/theme';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ngx-layout-direction-switcher',
@@ -9,8 +10,8 @@ import { Subject } from 'rxjs';
     <ngx-switcher
       [firstValue]="directions.RTL"
       [secondValue]="directions.LTR"
-      [firstValueLabel]="'RTL'"
-      [secondValueLabel]="'LTR'"
+      [firstValueLabel]="'عربى'"
+      [secondValueLabel]="'EN'"
       [value]="currentDirection"
       (valueChange)="toggleDirection($event)"
       [vertical]="vertical">
@@ -26,7 +27,8 @@ export class LayoutDirectionSwitcherComponent implements OnDestroy {
 
   @Input() vertical: boolean = false;
 
-  constructor(private directionService: NbLayoutDirectionService) {
+  constructor(private directionService: NbLayoutDirectionService, private translate: TranslateService) {
+
     this.currentDirection = this.directionService.getDirection();
 
     this.directionService.onDirectionChange()
@@ -35,6 +37,13 @@ export class LayoutDirectionSwitcherComponent implements OnDestroy {
   }
 
   toggleDirection(newDirection) {
+    console.log(newDirection);
+    if (newDirection == "rtl") {
+      this.translate.use("ar");
+    }
+    else {
+      this.translate.use("en");
+    }
     this.directionService.setDirection(newDirection);
   }
 

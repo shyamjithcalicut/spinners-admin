@@ -151,5 +151,8 @@
       "style": "scss"
     },
     "@schematics/angular:directive": {}
+  },
+  "cli": {
+    "analytics": "62b1d9dc-9de4-43fa-a58c-5bc484bb115a"
   }
 }
