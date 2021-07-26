@@ -1,0 +1,45 @@
+<html>
+
+<head>
+
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+
+<body id="LoginForm">
+    <div class="container">
+     
+        <div class="login-form">
+            <div class="main-div">
+                <div class="panel">
+                    <h2>Admin Login</h2>
+                    <p>Please enter your UserName and Password</p>
+                </div>
+                <form #loginForm="ngForm" id="Login" (ngSubmit)="login()" autocomplete="off">
+                    <div class="form-group">
+                        <input type="email" 
+                        class="form-control" 
+                        id="inputEmail" 
+                        name="inputEmail" 
+                        required
+                        [(ngModel)]="model.UserName"
+                        placeholder="UserName">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" 
+                        class="form-control" 
+                        id="inputPassword" 
+                        name="inputPassword" 
+                        required
+                        [(ngModel)]="model.Password"
+                        placeholder="Password">
+        
+                    </div>
+                        <button type="submit" 
+                        class="btn btn-primary">Login
+                        </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
