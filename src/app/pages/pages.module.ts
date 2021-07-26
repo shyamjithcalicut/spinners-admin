@@ -15,7 +15,7 @@ import { PagesRoutingModule } from './pages-routing.module';
     DashboardModule,
   ],
   declarations: [
-    PagesComponent    
+    PagesComponent
   ],
 })
 export class PagesModule {
