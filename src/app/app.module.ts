@@ -16,6 +16,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SigninComponent } from './pages/Auth/Login/signin.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -36,6 +37,7 @@ import {
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    Ng2SmartTableModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),

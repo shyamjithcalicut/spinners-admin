@@ -12,7 +12,10 @@ export const routes: Routes = [
     path: 'login',
     component: SigninComponent
   },
-
+  {
+    path: 'store',
+    component: SigninComponent
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' },
 ];

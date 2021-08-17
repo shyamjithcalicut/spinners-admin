@@ -33,4 +33,66 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+  {
+    title: 'Masters',
+    icon: 'lock-outline',
+    children: [
+      {
+        title: 'Store',
+        link: '/pages/Stores',
+      },
+      {
+        title: 'Area',
+        link: '/pages/Areas',
+      },
+      {
+        title: 'Category',
+        link: '/pages/Categories',
+      },
+      {
+        title: 'Item',
+        link: '/pages/Items',
+      },
+      {
+        title: 'Customer',
+        link: '/pages/Customers',
+      },
+    ],
+  },
+  {
+    title: 'Orders',
+    icon: 'lock-outline',
+    children: [
+      {
+        title: 'New Orders',
+        link: '/auth/login',
+      },
+      {
+        title: 'Pending Orders',
+        link: '/auth/register',
+      },
+      {
+        title: 'Completed Orders',
+        link: '/auth/request-password',
+      }
+    ],
+  },
+  {
+    title: 'Users',
+    icon: 'lock-outline',
+    children: [
+      {
+        title: 'User List',
+        link: '/auth/login',
+      },
+      {
+        title: 'User Roles',
+        link: '/auth/register',
+      },
+      {
+        title: 'Role Permissions',
+        link: '/auth/request-password',
+      }
+    ],
+  }  
 ];
