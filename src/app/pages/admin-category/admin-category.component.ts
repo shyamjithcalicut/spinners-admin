@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LocalDataSource } from 'ng2-smart-table';
-import { ViewCell } from 'ng2-smart-table';
-
+import { Router } from '@angular/router';
+import { CategoriesDto, CategoriesVM } from 'app/_models/categories';
+import { CategoryService } from 'app/_services/category.service';
 
 @Component({
   selector: 'admin-category',
@@ -10,43 +9,69 @@ import { ViewCell } from 'ng2-smart-table';
   styleUrls: ['./admin-category.component.scss']
 })
 export class AdminCategoryComponent implements OnInit {
-
-  constructor() { }
+  requestModel: any = {};
+  categories:CategoriesDto[];
+  category:CategoriesDto;
+  
+  constructor(private categoryService: CategoryService,private router: Router) { }
 
   ngOnInit(): void {
+
+    this.requestModel.currentPageNumber = 1;
+    this.requestModel.pageRows = 10;
+    this.requestModel.categoryName = '';
+    this.categoryService.getData(this.requestModel).subscribe((data: CategoriesDto[]) => {
+      this.categories = data;
+    });
   }
 
   settings = {
+    delete: {
+      confirmDelete: true,
+    },
+    add: {
+      confirmCreate: true,
+    },
+    edit: {
+      confirmSave: true,
+    },
     columns: {
-      id: {
-        title: 'ID'
+      categoryName: {
+        title: 'Category Name'
       },
-      name: {
-        title: 'Full Name'
-      },
-      username: {
-        title: 'User Name'
-      },
-      email: {
-        title: 'Email'
+      description: {
+        title: 'Description'
       }
     }
   };
-  
-  data = [
-    {
-      id: 1,
-      name: "Leanne Graham",
-      username: "Bret",
-      email: "Sincere@april.biz"
-    },
-    // ... other rows here
-    {
-      id: 11,
-      name: "Nicholas DuBuque",
-      username: "Nicholas.Stanton",
-      email: "Rey.Padberg@rosamond.biz"
-    }
-  ];
 
+  onDeleteConfirm(event) {
+    if (window.confirm('Are you sure you want to delete?')) {
+      event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
+  }
+
+  onSaveConfirm(event) {
+    if (window.confirm('Are you sure you want to save?')) {
+      event.newData['name'] += ' + added in code';
+      this.category = JSON.parse(event.newData);
+      this.categoryService.update(this.category)
+      event.confirm.resolve(event.newData);
+    } else {
+      event.confirm.reject();
+    }
+  }
+
+  onCreateConfirm(event) {
+    if (window.confirm('Are you sure you want to create?')) {
+      event.newData['name'] += ' + added in code';
+      this.category = JSON.parse(event.newData);
+      event.confirm.resolve(event.newData);
+      this.categoryService.add(this.category)
+    } else {
+      event.confirm.reject();
+    }
+  }
 }

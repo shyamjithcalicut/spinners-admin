@@ -1,3 +1,9 @@
-<p>admin-customer works!</p>
-<ng2-smart-table [settings]="settings"  [source]="data"></ng2-smart-table>
+<ng2-smart-table [settings]="settings"  [source]="categories"
+(deleteConfirm)="onDeleteConfirm($event)"
+(editConfirm)="onSaveConfirm($event)"
+(createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+
+<div class="row">
+      <span><button class="btn btn-dark" type="submit"><i class="fa fa-sign-in"  aria-hidden="true"></i>Save</button></span>
+ </div>
 
